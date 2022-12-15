@@ -10,7 +10,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get("/books", (req, res) => {
+router.get("/", (req, res) => {
   client.query(`SELECT * FROM books`, (err, result) => {
     if (!err) {
       res.send(result.rows);
@@ -18,7 +18,7 @@ router.get("/books", (req, res) => {
   });
 });
 
-router.post("/books", (req, res) => {
+router.post("/", (req, res) => {
   const {
     id,
     name,
@@ -55,7 +55,7 @@ router.post("/books", (req, res) => {
   );
 });
 
-router.put("/books/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   const {
     name,
     year,
@@ -81,7 +81,7 @@ router.put("/books/:id", (req, res) => {
   );
 });
 
-router.delete("/books/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   client.query(`DELETE FROM books WHERE id = '${req.params.id}'`, (err) => {
     if (!err) {
       res.send("Delete Books Succes");

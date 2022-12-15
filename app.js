@@ -6,6 +6,7 @@ const client = require("./src/connection/connection");
 require("dotenv").config();
 
 const booksRouter = require("./src/routes/books");
+const employeeRouter = require("./src/routes/employees");
 
 const app = express();
 
@@ -28,7 +29,11 @@ client.connect((err) => {
 
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
-
-app.use("/", booksRouter);
+// app.use((next) => {
+//   console.log("Time : ", Date.now());
+//   next();
+// });
+app.use("/books", booksRouter);
+app.use("/employees", employeeRouter);
 
 client.connect;
