@@ -34,4 +34,33 @@ router.post("/", (req, res) => {
   );
 });
 
+router.put("/:id", (req, res) => {
+  const { id_employee, name, email, password } = req.body;
+  client.query(
+    `UPDATE employee
+  SET name = '${name}', email = '${email}', password' = ${password}' 
+  WHERE id_employee = '${req.params.id_employee}'`,
+    (err) => {
+      if (!err) {
+        res.send("Update Employee Succes");
+      } else {
+        res.send(err.message);
+      }
+    }
+  );
+});
+
+router.delete("/:id", (req, res) => {
+  client.query(
+    `DELETE FROM employee WHERE id_employee = '${req.params.id_employee}'`,
+    (err) => {
+      if (!err) {
+        res.send("Delete Employee Succes");
+      } else {
+        res.send(err.message);
+      }
+    }
+  );
+});
+
 module.exports = router;
