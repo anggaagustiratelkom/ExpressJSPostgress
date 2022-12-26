@@ -5,10 +5,14 @@ const cookieParser = require("cookie-parser");
 const client = require("./src/connection/connection");
 require("dotenv").config();
 
+const cors = require("cors");
+
 const booksRouter = require("./src/routes/books");
 const employeeRouter = require("./src/routes/employees");
 
 const app = express();
+
+app.use(cors());
 
 const http = require("http");
 
