@@ -11,7 +11,7 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  client.query(`SELECT * FROM employee ORDER BY id_employee`, (err, result) => {
+  client.query(`SELECT * FROM employees ORDER BY id_employee`, (err, result) => {
     if (!err) {
       res.send(result.rows);
     }
@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const { id_employee, name, email, password } = req.body;
   client.query(
-    `INSERT INTO employee
+    `INSERT INTO employees
   (id_employee, name, email, password) VALUES
   ('${id_employee}', '${name}', '${email}', '${password}')`,
     (err) => {
@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const { id_employee, name, email, password } = req.body;
   client.query(
-    `UPDATE employee
+    `UPDATE employees
   SET name = '${name}', email = '${email}', password' = ${password}' 
   WHERE id_employee = '${req.params.id_employee}'`,
     (err) => {
